@@ -31,3 +31,31 @@ Look at the histogram again. The amount of water at index 4 is 2. This is becaus
 5. Subtract the height of that index from that minimum
 6. Add the difference to the total amount of water
 
+While this is a functional solution, it requires nested for loops, which means it has a big O runtime of O(n^2). Let’s look at a solution with a more efficient runtime.
+
+# The Optimized Solution
+The previous solution had a quadratic runtime, but it’s possible to solve this problem in O(n) time by using two pointers. The pointers will start at each end of the array and move towards each other. 
+
+The two-pointer approach is a common approach for problems that require working with arrays, as it allows you to go through the array in a single loop and without needing to create copy arrays.
+
+We’ll start by creating the following variables:
+* ~~total_water = 0
+* left_pointer = 0 
+* right_pointer = heights.length - 1
+* left_bound = 0
+* right_bound = 0~~
+
+**left_pointer** and **right_pointer** will start at the beginning and end of the array, respectively, and move towards each other until they meet.
+
+## The algorithm:
+
+`while left_pointer < right_pointer`\
+    `if the height at left_pointer <= the height at right_pointer`\
+         `- update the left_bound to be the greater value between the current left_bound and the height at left_pointer`\
+         `- increment total_water to be the difference between left_bound and the height at left_pointer`\
+         `- move left_pointer forward by one`
+    `else`\
+        `- update the right_bound to be the greater value between the current right_bound and the height at right_pointer`\
+        `- increment total_water to be the difference between right_bound and the height at right_pointer`\
+        `- move right_pointer back by one`\
+`return total_water`
